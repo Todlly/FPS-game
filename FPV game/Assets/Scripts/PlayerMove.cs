@@ -5,24 +5,24 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     Rigidbody player;
-    public float speed = 10f;
+    public float speed = 5.0f;
 
     void Start()
     {
         player = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         MovePlayer();
     }
 
     void MovePlayer()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
         Vector3 movement = new Vector3(h, 0f, v);
         movement = movement.normalized * speed * Time.deltaTime;
-        player.MovePosition(transform.position + movement);
+        player.transform.Translate(movement);
     }
 }
