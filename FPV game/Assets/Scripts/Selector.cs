@@ -5,6 +5,9 @@ using UnityEngine;
 public class Selector : MonoBehaviour
 {
     Ray ray;
+    public Material material;
+    private bool highlighted;
+    private IInteractable obj;
 
     private void Awake()
     {
@@ -19,10 +22,20 @@ public class Selector : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Interactable"))
             {
-                Debug.Log("HitInter");
-                PickUp obj = hit.transform.GetComponent<PickUp>();
+                obj = hit.transform.gameObject.GetComponent<IInteractable>();
                 obj.Highlight();
+                highlighted = true;
             }
+            else if (highlighted)
+            {
+                obj.DeHighlight();
+                highlighted = false;
+            }
+        }
+        else if (highlighted)
+        {
+            obj.DeHighlight();
+            highlighted = false;
         }
     }
 }

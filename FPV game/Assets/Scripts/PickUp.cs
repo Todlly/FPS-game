@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : Interactable
+public class PickUp : MonoBehaviour, IInteractable
 {
     public Material defaultMaterial;
     public Material highlightedMaterial;
-    private Material material;
+    private Renderer render;
 
-    private void Awake()
+
+    private void Start()
     {
-        material = GetComponent<Material>();
+        render = GetComponent<Renderer>();
     }
 
-    public override void Highlight()
+    public void Highlight()
     {
-        material = highlightedMaterial;
+        render.material = highlightedMaterial;
     }
 
-    public override void DeHighlight()
+    public void DeHighlight()
     {
-        material = defaultMaterial;
+        render.material = defaultMaterial;
+    }
+
+    public void Interact()
+    {
+
     }
 }

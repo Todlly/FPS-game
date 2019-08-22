@@ -2,20 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public interface IInteractable
 {
-    public virtual void Interact()
-    {
+    void Interact();
 
-    }
+    void Highlight();
 
-    public virtual void Highlight()
-    {
-
-    }
-
-    public virtual void DeHighlight()
-    {
-
-    }
+    void DeHighlight();
 }
